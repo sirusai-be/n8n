@@ -5,55 +5,11 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        32,
+        -432
       ],
       "id": "8f6b968e-5f8f-4f10-b686-bd53084023c2",
       "name": "When clicking ‘Execute workflow’"
-    },
-    {
-      "parameters": {
-        "resource": "table",
-        "operation": "getRows",
-        "filters": {},
-        "workbook": {
-          "__rl": true,
-          "value": "01U27M72IMG4UCDRQQ5ZD2WLKZIZGW7RAC",
-          "mode": "list",
-          "cachedResultName": "CampagneGemeentes 20251106",
-          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B2128370C-10C6-47EE-AB2D-59464D6FC402%7D&file=CampagneGemeentes%2020251106.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1"
-        },
-        "worksheet": {
-          "__rl": true,
-          "value": "{A1D312BB-B119-4471-9E95-C4E0720168EA}",
-          "mode": "list",
-          "cachedResultName": "Campagne",
-          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B2128370C-10C6-47EE-AB2D-59464D6FC402%7D&file=CampagneGemeentes%2020251106.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&activeCell=Campagne!A1"
-        },
-        "table": {
-          "__rl": true,
-          "value": "{D412F676-0431-4A2B-8F14-9368157BD7D0}",
-          "mode": "list",
-          "cachedResultName": "Gemeentes",
-          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B2128370C-10C6-47EE-AB2D-59464D6FC402%7D&file=CampagneGemeentes%2020251106.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&activeCell=Campagne!A1:U56"
-        },
-        "returnAll": true,
-        "rawData": "="
-      },
-      "type": "n8n-nodes-base.microsoftExcel",
-      "typeVersion": 2.1,
-      "position": [
-        416,
-        0
-      ],
-      "id": "0ea02140-f7cf-4865-abea-9f870bc9971a",
-      "name": "Get rows",
-      "credentials": {
-        "microsoftExcelOAuth2Api": {
-          "id": "DW48dQCZ7VeSw4Xt",
-          "name": "Microsoft Excel account"
-        }
-      }
     },
     {
       "parameters": {
@@ -62,8 +18,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        864,
-        0
+        816,
+        -432
       ],
       "id": "cffd4fa3-8538-48a0-add4-7eea5763ede7",
       "name": "Loop Over Items"
@@ -81,7 +37,7 @@
             {
               "id": "cd075937-271c-4657-bfaa-e26a0bc5a964",
               "leftValue": "={{ $json.Status }}",
-              "rightValue": "={{ $('SetFlowVars').first().json.MAIL_STATUS_NEW }}",
+              "rightValue": "={{ $('SetFlowVars').first().json.MAIL1st_STATUS_NEW }}",
               "operator": {
                 "type": "string",
                 "operation": "equals",
@@ -98,8 +54,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        624,
-        0
+        608,
+        -432
       ],
       "id": "d6f793a4-621e-4250-9e50-ee962609bb72",
       "name": "Filter"
@@ -107,9 +63,9 @@
     {
       "parameters": {
         "fromEmail": "test@syssauw.com",
-        "toEmail": "test@syssauw.com",
+        "toEmail": "={{ $('Target_AllOrOne').item.json.email_lijst }}",
         "subject": "={{ $('MakeOutputJson').item.json.message.content.Subject }}",
-        "html": "=Emails: {{ $('Target').item.json.email_lijst }}<br>\n<br>\n{{ $('Target').item.json.titels_achternamen }},<br>\n{{ $('Target').item.json.voornamen }}<br>\n<br>\n{{ $('MakeOutputJson').item.json.message.content.Body }}\n<br>\nMet Vriendelijke Groeten<br>\n{{ $('SetFlowVars').first().json.FROM }}<br><br>\n{{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}\n",
+        "html": "=<br>\n{{ $('Target_AllOrOne').item.json.titels_achternamen }}<br>\n{{ $('Target_AllOrOne').item.json.voornamen }}<br><br>\n{{ $('WhichMail').item.json.message.content.Hook }}\n{{ $('WhichMail').item.json.message.content.Body }}<br>\n\nMet Vriendelijk Groet,<br>\nJan Syssauw<br><br>\n{{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}\n\n{{ $('SetFlowVars').first().json.UNSUBSCRIBE}}\n\n\n",
         "options": {
           "appendAttribution": false
         }
@@ -117,8 +73,8 @@
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        1840,
-        16
+        2176,
+        -224
       ],
       "id": "1ff1dd4a-6f5e-4457-8b58-f4a6a13c23ce",
       "name": "Send email",
@@ -136,10 +92,10 @@
         "operation": "update",
         "workbook": {
           "__rl": true,
-          "value": "01U27M72IMG4UCDRQQ5ZD2WLKZIZGW7RAC",
+          "value": "01U27M72NQXQ5BUCL335HY25OKUZP5PVS5",
           "mode": "list",
-          "cachedResultName": "CampagneGemeentes 20251106",
-          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B2128370C-10C6-47EE-AB2D-59464D6FC402%7D&file=CampagneGemeentes%2020251106.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1"
+          "cachedResultName": "CampagneGemeentesDemo",
+          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B1A3ABCB0-7B09-4FDF-8D75-CAA65FD7D65D%7D&file=CampagneGemeentesDemo.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1"
         },
         "worksheet": {
           "__rl": true,
@@ -154,11 +110,23 @@
           "values": [
             {
               "column": "Status",
-              "fieldValue": "={{ $('SetFlowVars').first().json.MAIL_STATUS_SENT }}"
+              "fieldValue": "={{ $('SetFlowVars').first().json.MAIL1st_STATUS_SENT }}"
+            },
+            {
+              "column": "1stEmail",
+              "fieldValue": "={ \"Subject\":\"{{ $('MakeOutputJson').item.json.message.content.Subject }}\", \"Hook\":\"{{ $('MakeOutputJson').item.json.message.content.Hook }}\",Body\":\"{{ $('MakeOutputJson').item.json.message.content.Body }}\"}"
+            },
+            {
+              "column": "1stEmail_date",
+              "fieldValue": "={{ $('SetFlowVars').first().json.MAIL_DATE_SENT }}"
             },
             {
               "column": "Date",
               "fieldValue": "={{ $('SetFlowVars').first().json.MAIL_DATE_SENT }}"
+            },
+            {
+              "column": "Target",
+              "fieldValue": "={{ $('Target_AllOrOne').item.json.email_lijst }}"
             }
           ]
         },
@@ -167,8 +135,8 @@
       "type": "n8n-nodes-base.microsoftExcel",
       "typeVersion": 2.1,
       "position": [
-        2032,
-        16
+        2416,
+        -224
       ],
       "id": "8730bd4c-c8be-46b0-8fc9-2759dec55947",
       "name": "Update sheet",
@@ -181,39 +149,26 @@
     },
     {
       "parameters": {
-        "jsCode": "// n8n Function node\n\nconst now = new Date();\nconst options = {\n  day: '2-digit',\n  month: '2-digit',\n  year: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n  hour12: false,\n};\nconst formattedDate = now.toLocaleString('nl-BE', options).replace(',', '');\n\n// Gebruik backticks voor multi-line string en behoud HTML-formattering\nconst v_email_signature = `\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"font-family:'Segoe UI',sans-serif;font-size:9pt;color:#999999;\">\n  <tr>\n    <td style=\"border-right:4px solid #EF7422;padding-right:12px;vertical-align:top;\">\n      <img src=\"https://sirus-ai.be/wp-content/uploads/2025/06/SirusAI.svg\" width=\"120\" alt=\"SirusAI\" style=\"display:block;border:none;\">\n    </td>\n    <td style=\"padding-left:12px;vertical-align:top;\">\n      <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"font-family:'Segoe UI',sans-serif;font-size:9pt;color:#999999;\">\n        <tr>\n          <td style=\"padding-bottom:2px;\">\n            <span style=\"font-size:11pt;color:#000C6E;font-weight:bold;\">Jan Syssauw</span>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:2px;\">\n            <a href=\"tel:+32495590816\" style=\"color:#999999;text-decoration:none;\">+32 495 59 08 16</a>\n            <span style=\"color:#FF5500;\"> | </span>\n            <a href=\"https://sirus-ai.be\" style=\"color:#999999;text-decoration:none;\">sirus-ai.be</a>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:4px;\">\n            <a href=\"https://goo.gl/maps/SMtDTHKW6bk\" style=\"color:#999999;text-decoration:none;\">\n              Verlorenbroodstraat 122 bus 8<br>BE-9820 Merelbeke-Melle\n            </a>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:4px;\">\n            <span style=\"font-size:11pt;color:#000C6E;font-weight:bold;\">Sirus<i>AI</i></span>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:2px;\">\n            Jouw partner in AI & automatisatie<br>\n            Boek een <a href=\"https://sirus-ai.be/quickscan/\" style=\"color:#FF5500;font-weight:bold;text-decoration:none;\">QuickScan Workshop</a>\n          </td>\n        </tr>\n        <tr>\n          <td>\n            Volg SirusAI via <a href=\"https://www.linkedin.com/company/sirusai\" style=\"color:#FF5500;font-weight:bold;text-decoration:none;\">LinkedIn</a>\n          </td>\n        </tr>\n      </table>\n    </td>\n  </tr>\n</table>\n`;\n\nreturn [\n  {\n    json: {\n      MAIL_STATUS_NEW:\"Ready\",\n      MAIL_STATUS_SENT: \"MailSent\",\n      MAIL_DATE_SENT: formattedDate,\n      FROM: \"Jan Syssauw\",\n      EMAIL_SIGNATURE: v_email_signature\n    }\n  }\n];\n"
+        "jsCode": "// n8n Function node\n\nconst now = new Date();\nconst options = {\n  day: '2-digit',\n  month: '2-digit',\n  year: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n  hour12: false,\n};\nconst formattedDate = now.toLocaleString('nl-BE', options).replace(',', '');\n\nconst v_unsubscribe = `<p style=\"font-size:12px;color:#666;margin-top:24px;\">\nU ontvangt deze e-mail omdat we dachten dat SirusAI relevant is voor uw organisatie.\nWilt u geen e-mails meer van ons? \n<a href=\"mailto:privacy@sirus-ai.be?subject=Unsubscribe van SirusAI Mailing List &body=Beste, \ngraag dit e-mailadres uitschrijven van de SirusAI Mailing List.\">\nKlik hier om u uit te schrijven\n</a>.\n</p>`\n\n\n// Gebruik backticks voor multi-line string en behoud HTML-formattering\nconst v_email_signature = `\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"font-family:'Segoe UI',sans-serif;font-size:9pt;color:#999999;\">\n  <tr>\n    <td style=\"border-right:4px solid #EF7422;padding-right:12px;vertical-align:top;\">\n      <img src=\"https://sirus-ai.be/wp-content/uploads/2025/07/SirusAI.png\" width=\"120\" alt=\"SirusAI\" style=\"display:block;border:none;\">\n    </td>\n    <td style=\"padding-left:12px;vertical-align:top;\">\n      <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"font-family:'Segoe UI',sans-serif;font-size:9pt;color:#999999;\">\n        <tr>\n          <td style=\"padding-bottom:2px;\">\n            <span style=\"font-size:11pt;color:#000C6E;font-weight:bold;\">Jan Syssauw</span>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:2px;\">\n            <a href=\"tel:+32495590816\" style=\"color:#999999;text-decoration:none;\">+32 495 59 08 16</a>\n            <span style=\"color:#FF5500;\"> | </span>\n            <a href=\"https://sirus-ai.be\" style=\"color:#999999;text-decoration:none;\">sirus-ai.be</a>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:4px;\">\n            <a href=\"https://goo.gl/maps/SMtDTHKW6bk\" style=\"color:#999999;text-decoration:none;\">\n              Verlorenbroodstraat 122 bus 8<br>BE-9820 Merelbeke-Melle\n            </a>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:4px;\">\n            <span style=\"font-size:11pt;color:#000C6E;font-weight:bold;\">Sirus<i>AI</i></span>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"padding-bottom:2px;\">\n            Jouw partner in AI & automatisatie<br>\n            Boek een <a href=\"https://sirus-ai.be/quickscan/\" style=\"color:#FF5500;font-weight:bold;text-decoration:none;\">QuickScan Workshop</a>\n          </td>\n        </tr>\n        <tr>\n          <td>\n            Volg SirusAI via <a href=\"https://www.linkedin.com/company/sirusai\" style=\"color:#FF5500;font-weight:bold;text-decoration:none;\">LinkedIn</a>\n          </td>\n        </tr>\n      </table>\n    </td>\n  </tr>\n</table>\n`;\n\nreturn [\n  {\n    json: {\n      CAMPAGNE_FILE: \"CampagneGemeentesDemo\",\n      MAIL1st_STATUS_NEW:\"Ready\",\n      MAIL1st_STATUS_SENT: \"1stMailSent\",\n      MAIL1st_audience:\"One\",  // One --> First AD --> Schepen --> Burgemeester or All \n      MAIL_DATE_SENT: formattedDate,\n      FROM_EMAIL: \"jan.syssauw@sirus-ai.be\",\n      TO_EMAIL: \"jan.syssauw@sirus-ai.be\",\n      BCC_EMAIL: \"jan.syssauw@sirus-ai.be\",\n      FROM: \"Jan Syssauw\",\n      EMAIL_SIGNATURE: v_email_signature,\n      MAIL_CARRIER: \"Outlook\",\n      UNSUBSCRIBE:v_unsubscribe\n    }\n  }\n];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        208,
-        0
+        224,
+        -432
       ],
       "id": "2ccdb993-469d-40df-be10-659011666fe3",
       "name": "SetFlowVars"
     },
     {
       "parameters": {
-        "jsCode": "// n8n Function node\n\n// Inputvariabelen (komen uit vorige node)\nconst Burgemeester_Voornaam = $('Loop Over Items').first().json.Burgemeester_Voornaam || \"\";\nconst Burgemeester_Achternaam = $('Loop Over Items').first().json.Burgemeester_Achternaam || \"\";\nconst Burgemeester_Email = $('Loop Over Items').first().json.Burgemeester_Email || \"\";\n\nconst Schepen_Voornaam = $('Loop Over Items').first().json.Schepen_Voornaam || \"\";\nconst Schepen_Achternaam = $('Loop Over Items').first().json.Schepen_Achternaam || \"\";\nconst Schepen_Email = $('Loop Over Items').first().json.Schepen_Email || \"\";\n\nconst Algemeen_Directeur_Voornaam = $('Loop Over Items').first().json.Algemeen_Directeur_Voornaam || \"\";\nconst Algemeen_Directeur_Achternaam = $('Loop Over Items').first().json.Algemeen_Directeur_Achternaam || \"\";\nconst Algemeen_Directeur_Email = $('Loop Over Items').first().json.Algemeen_Directeur_Email || \"\";\n\n// Helperfunctie om te checken of email bruikbaar is\nfunction geldig(email) {\n  if (!email) return false;\n  return !email.trim().toUpperCase().startsWith(\"NOT USE\");\n}\n\nlet voornamen = [];\nlet titels_achternamen = [];\nlet emails = [];\n\n// Burgemeester\nif (geldig(Burgemeester_Email)) {\n  voornamen.push(`Beste ${Burgemeester_Voornaam}`);\n  titels_achternamen.push(`Beste Burgemeester ${Burgemeester_Achternaam}`);\n  emails.push(Burgemeester_Email.trim());\n}\n\n// Schepen\nif (geldig(Schepen_Email)) {\n  voornamen.push(`Beste ${Schepen_Voornaam}`);\n  titels_achternamen.push(`Beste Schepen ${Schepen_Achternaam}`);\n  emails.push(Schepen_Email.trim());\n}\n\n// Algemeen Directeur\nif (geldig(Algemeen_Directeur_Email)) {\n  voornamen.push(`Beste ${Algemeen_Directeur_Voornaam}`);\n  titels_achternamen.push(`Beste Algemeen Directeur ${Algemeen_Directeur_Achternaam}`);\n  emails.push(Algemeen_Directeur_Email.trim());\n}\n\n// Combineer in strings\nconst output = {\n  voornamen: voornamen.join(\", \"),\n  titels_achternamen: titels_achternamen.join(\", \"),\n  email_lijst: emails.join(\"; \")\n  \n};\n\n// Output als JSON voor n8n\nreturn [{ json: output }];"
+        "jsCode": "// n8n Function node – maak van string JSON\nreturn items.map(item => {\n  const c = item.json.message?.content;\n  let parsed = {};\n  try {\n    parsed = JSON.parse(c);\n  } catch (e) {\n    parsed = { Subject: null, Hook: null, Body: null, parseError: e.message };\n  }\n  item.json.message.content = parsed;\n  return item;\n});\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1104,
-        16
-      ],
-      "id": "fe9ddba0-f59b-4ac7-b688-937389543bb1",
-      "name": "Target"
-    },
-    {
-      "parameters": {
-        "jsCode": "// n8n Function node – maak van string JSON\nreturn items.map(item => {\n  const c = item.json.message?.content;\n  let parsed = {};\n  try {\n    parsed = JSON.parse(c);\n  } catch (e) {\n    parsed = { Subject: null, Body: null, parseError: e.message };\n  }\n  item.json.message.content = parsed;\n  return item;\n});\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1664,
-        16
+        1552,
+        -432
       ],
       "id": "2abfab65-822e-4c87-97e2-565ee3f4c550",
       "name": "MakeOutputJson"
@@ -235,8 +190,8 @@
       "type": "n8n-nodes-base.slack",
       "typeVersion": 2.3,
       "position": [
-        1104,
-        -208
+        1056,
+        -640
       ],
       "id": "3a515ef5-d19f-4fcf-a74f-a0580b0ff2c5",
       "name": "Send a message",
@@ -259,7 +214,7 @@
         "messages": {
           "values": [
             {
-              "content": "=Je bent een ervaren AI en Automatisatiemarketeer bij SirusAI. \nJe taak is een korte, mensgerichte en slimme cold email te schrijven naar een gemeente.\nDe mail richt zich op de burgemeester, schepen voor ICT/digitalisering of algemeen directeur, afhankelijk van de beschikbare contactgegevens.\n\n# Context\nSirusAI is een onafhankelijk AI- en automatisatieadviesbureau uit Merelbeke.\nWe helpen Vlaamse gemeenten om:\n- repetitieve administratie te automatiseren,\n- interne kennis en documentatie beter vindbaar te maken,\n- Copilot & ChatGPT veilig en efficiënt te gebruiken,\n- AI-beleid en governance op te zetten conform de EU AI Act.\n\nOnze aanpak is **pragmatisch, vendor-neutraal en meetbaar** — we leveren impact in weken, niet maanden.  \nTone of voice: professioneel, pragmatisch, Vlaams-zakelijk vriendelijk, transparant en inspirerend.\n\n# Invoerparameters\nGemeente_naam = {{ $('Loop Over Items').item.json.Gemeente }}\nGemeente_laatste_nieuws = {{ $('Loop Over Items').item.json.LaatsteNieuws }} \nGemeente_waarden = {{ $('Loop Over Items').item.json.Waarden }}\nGemeente_ambities= {{ $('Loop Over Items').item.json.Ambities }}\nOntvanger_rol = {{ $('Target').item.json.titels_achternamen }}\nOntvanger_voornamen = {{ $('Target').item.json.voornamen }}\nOntvanger_achternamen = {{ $('Target').item.json.voornamen }}\nVerzender_naam = {{ $('SetFlowVars').first().json.FROM }}\nEmail_signature = {{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}\nBelangrijkste_pijnpunten = veel manuele administratie, AI-governance ontbreekt, Copilot nog niet benut, burgers vinden info niet terug op website.\nCall_to_action = Voorstel voor kennismakingsgesprek of Vrijblijvende AI-QuickScan \n\n# Waardevoorstel van SirusAI\nVan AI & Automatisatie plan tot impact in weken.\n## Ons Motto/Slogan\nHave a productive day\n## Hero Line\nSirusAI helpt KMO’s en overheden om processen te automatiseren, repetitief werk te elimineren, informatie vindbaar te maken en AI veilig te gebruiken.\nWe leveren tastbare tijdswinst binnen korte sprints; van strategie tot uitvoering.\n## Wat we doen\n- AI & Automatisatie-starter begeleiding: ontdek waar AI en automatisatie écht waarde creëren. Van opportuniteiten identificeren tot een concreet actieplan met prioriteiten, ROI-inschatting en veilige eerste stappen.\n- AI-assistenten: burgers, klanten en medewerkers krijgen 24/7 betrouwbare antwoorden, meertalig en uitlegbaar of laten repetitieve taken automatisch uitvoeren.\n- Workflow-automatisatie: versnel processen en elimineer manuele stappen. Facturen, formulieren, dossiers, HR-taken en rapportering verlopen automatisch via Power Automate, n8n of OCR/NLP.\n- Vergroot productiviteit en consistentie met generatieve AI: training, promptbibliotheek, AI-Champions en communities verhogen de kwaliteit en het rendement je werknemers. AI-Copilots schrijven, samenvatten en herformuleren beleidsnota’s, nieuwsbrieven en rapporten, in de juiste tone-of-voice, meertalig en automatisch publiceerbaar via CMS of nieuwsbriefplatform.\n- AI-kennisdeling & opleidingen: bouw een duurzaam kennisfundament. GenAI-kennisbank met Q&A’s, interne Copilot-ondersteuning en AI-literacy-training versterken teams en versnellen onboarding.\n- AI-governance by design: veranker vertrouwen vanaf dag één. AI-beleid, DPIA’s, AI-register en risicoanalyse — volledig conform EU AI Act en GDPR.\n## Waarom SirusAI\n- Businesspartner, geen leverancier: we denken mee in functie van je doelstellingen, ROI en menselijk draagvlak.\n- Vendor-neutraal: we adviseren wat écht past voor u; build of buy, open source, Microsoft, of andere. We zijn niet gebonden aan één bepaalde technologie, oplossing of product.\n- End-to-end: van strategisch advies en richting tot implementatie, training of tijdelijke AI-experts in je team, als businesspartner ontzorgen we de ondernemers en administraties van initiatie tot impact\n- Sirus-ecosysteem: We maken deel uit van het bredere Sirus-ecosysteem, met ons zusterbedrijf Sirus waarin bijna 100 consultants actief zijn in softwareontwikkeling, integratie en cloud technologie. Dit alles geeft een stevige basis voor elke AI-implementatie.\n- “Tevreden of geld terug” Garantie\n-- Stop at anytime: de klant kan tijdens een project op ieder moment het contract stoppen. Later gaat dit tegen een fee zijn van 25% van het resterende bedrag, maar initieel gaan we gewoon laten stoppen \n-- Tevreden of geld terug garantie: We gaan dan ook klanten een garantie aanbieden dat per kleine project iteraties kunnen beslissen dat ze niet tevreden zijn over de laatste stap en indien ze niet tevreden zijn de geleverde prestaties hun investering terug kunnen krijgen.\n## Resultaat\n- Minder e-mails, wachttijden en frustratie — meer tevreden klanten en medewerkers.\n- Tot 50% minder administratiedruk en snellere besluitvorming.\n- Conform, uitlegbaar en klaar voor groei.\n- En vooral: duidelijkheid over wat AI écht voor jouw organisatie kan betekenen — zonder hype, met impact.\n\n\n# Top 4 meest relevante AI-use cases voor lokale overheden\n1. **AI-policy & governance** – ondersteuning bij het opstellen van een conform en veilig AI-beleid en AI-register volgens de EU AI Act en GDPR.  \n2. **Workflow-automatisatie** – digitaliseren van repetitieve administratie (vergunningsaanvragen, klachtenbeheer, notulen, HR-processen) waardoor manueel werk, dubbele invoer in sytems, opvolgingswerk vermeden worden en zo veel minder fouten en veel tijd gewonnen wordt\n3. **AI-gestuurde contentproductie** – Copilot en ChatGPT inzetten de productiviteit van medewerkers te verhogen om beleidsnota’s, nieuwsbrieven en rapporten automatisch te laten schrijven of samenvatten.  \n4. **Informatie Vinden / Loketassistent (intranet & website)**: Burgers/medewerkers vinden info niet; veel herhaalde telefoons/mails; inconsistent antwoord. Tijdverlies, frustratie en overbelasting van interne teams.\n- veel telefonische/mail vragen, waarvan het antwoord op de website staat.\n- veel verloren, manueel, repetitief  zelfde vragen beantwoorden.\n- dienstverlening beperkt tot werkuren\"\n\n# Andere use cases\n1. **Repetitieve Administratie** - Veel repetitief administratief werk (bv. facturen manueel inboeken, data overtypen, dubbele invoer in systemen,herinneringen sturen, ... ) → fouten + tijdverlies.\n2. **Interne Kennisbank & Training Copilot.** - Kennis zit verspreid in mappen en e-mails. Nieuwe medewerkers vinden moeilijk terug wat ze nodig hebben.\n3. **Slim Afspraakbeheer & Loketcapaciteit** - Afspraakbeheer is manueel; loketten kampen met wachtrijen, dubbele boekingen en inefficiënte inzet van medewerkers.\n4. **Dossierintake & Triage-Agent** Binnenkomende mails, formulieren en klachten worden handmatig gelezen, gecodeerd en toegewezen. \n- vaak ontbreekt informatie of is het niet duidelijk\n- automatisch opvolging van termijnen.\n- Vertragingen en fouten leiden tot frustratie.\n5. **Document-AI & Archivering** - Medewerkers moeten info uit pdf’s of scans overtypen in zaaksysteem; openbaarheid en archiefbeheer vragen manuele selectie.\nVergader- & Besluitcopilot\tNotulen en actiepunten worden niet of te laat verwerkt. Besluiten raken verspreid over meerdere documenten.\n5. **HR Self-Service & Medewerkersvragen** - HR ontvangt veel herhaalde vragen (verlof, fietsplan, verloning). Processen zijn manueel en niet geïntegreerd.\n6. **Beleidsanalyse & Rapportering** - Beleidsmedewerkers moeten lange documenten lezen, samenvatten en rapporteren. Beleidsdata is verspreid over Excel en BI-systemen.\n7. **Automatische Communicatie & Nieuwsbrieven** - Nieuwsbrieven, sociale media en updates worden handmatig gemaakt; inconsistentie en tijdsdruk bij communicatie.\n\n# Outputvereisten\nSchrijf een korte, overtuigende cold email (max. 200 woorden) die:\n0. De aanhef, de aanspreking is al voorzien, dus die moet niet in de mail worden aangehaald\n1. Start met een relevante hook op basis van de Gemeente_laatste_nieuws, of gemeente_waarden of gemeente_ambities (enkel als die past bij de SirusAI-context).\nGebruik de Gemeente_laatste_nieuws, gemeente_waarden of gemeente_ambities enkel als ze direct verband houdt met digitalisering, dienstverlening of administratie. Herformuleer die context tot een empathische openingszin met een menselijk inzicht (geen droge verwijzing naar nieuws).”\n2. Erkent een herkenbaar pijnpunt of uitdaging voor de gemeente.\n3. Leg goed en vlot uit hoe SirusAI concreet helpt (focus op de 3 belangrijkste use cases). Maar voeg 1 korte lijn toe over de andere use case \n4. Sluit af met een duidelijke en vriendelijke call-to-action.\n5. Taal: Nederlands (professioneel Vlaams), ‘u’-vorm.\n6. Toon: adviserend, niet-verkooppraat.\n7. Geef enkel de email body terug, geen extra information vooraf of achteraf. Enkel de inhoud van de email. Begin de mail niet met 'Subject:'', verwijder dat.\n8. Geef de email body terug in html, gebruik sobere, lichte, professionele mark-up (bold, bullets, italic, … ) om de email vlotter te laten lezen.\n9. De bedankt en de Verzender_naam en Email_signature om af te sluiten worden achteraf toegevoegd, je moet die niet meer toevoegen. Daar staat reeds in wie de mail zendt, en alle contact informatie.\n10. Personaliseer de email subject (bv met naam van gemeente) voor maximale impact\n11. Verwerk subtiel één kernzin van het SirusAI-merk (‘Van plan tot impact in weken’ of ‘Have a productive day’) in de mail, maar nooit in de CTA of als slogan — enkel als toonversterker.\n\n# Extra richtlijnen\n- Gebruik enkel gemeentelijke info in de hook als ze relevant is voor SirusAI.\n- Vermijd AI-jargon (“LLM”, “neurale netwerken”). Focus op wat het oplost.\n- Toon begrip voor de publieke context (transparantie, compliance, burgergerichtheid).\n- Sluit af met een uitnodiging om kort kennis te maken of een AI QuickScan te doen.\n- Gebruik luchtige witruimte, korte zinnen, heldere structuur.\n- Gebruik enkel informatie die gegeven is in de prompt, maak zelf geen informatie op.\n\n# Schrijfstijl\nTone of voice: Professioneel, helder en mensgericht. Schrijf als een ervaren gids die vertrouwen wekt, niet als een verkoper. De toon is Vlaams zakelijk-vriendelijk: toegankelijk, concreet en to the point, zonder modewoorden of overdrijving.\n\nDoel: \nMaak AI en automatisatie begrijpelijk, rendabel en toepasbaar.\nVertrek altijd vanuit de uitdaging, pijnpunt of context van de lezer, niet vanuit SirusAI zelf. Toon hoe technologie problemen oplost, tijd bespaart of dienstverlening verbetert.\n\nKernprincipes:\n- Professioneel & deskundig: toon kennis zonder afstandelijk te zijn.\n- Pragmatisch: focus op resultaat, niet op hype of technische details.\n- Mensgericht: AI versterkt mensen — “human-in-the-loop by design”.\n- Transparant: eerlijk over haalbaarheid, kosten en risico’s.\n- Inspirerend: maak innovatie tastbaar, met eenvoudige voorbeelden.\n- Schrijfstijlregels:\n-- Schrijf in de tegenwoordige tijd, actief en direct.\n-- Gebruik korte, heldere zinnen (max. ±20 woorden).\n-- Gebruik “u” of “uw organisatie” in B2B-contexten.\n-- Vermijd loze marketingtaal (“disruptive”, “cutting-edge”).\n-- Leg complexe thema’s eenvoudig uit (“AI hoeft geen raketwetenschap te zijn”).\n-- Toon empathie en relevantie (“We begrijpen dat digitalisering niet stopt aan het loket.”).\n-- Gebruik krachtige werkwoorden: versnelt, vereenvoudigt, versterkt, ontzorgt, verbetert.\n-- Eindig altijd met een duidelijke call-to-action of vervolgstap (gesprek, QuickScan, demo).\n-- Gebruik beperkt en verstanding bullets om langere paragrafen op te breken en leesbaarder te maken\n- Sleutelzin voor consistentie:\n--“SirusAI maakt van AI een hefboom voor groei en efficiëntie — van plan tot impact.”\n-Slogan: \"Have a productive day!\"\n\n# Outputformaat\nHet antwoord is een json met 2 elementen, email subject en email body met het volgende formaat:\n{ \"Subject\": \"Efficiëntere administratie en digitale dienstverlening\",\n  \"Body\": \"<p>Met de uitbreiding van het thuisloket biedt Berlare burgers meer digitale mogelijkheden. Toch blijft veel administratief werk tijdrovend en zoeken medewerkers vaak handmatig naar benodigde informatie.</p><p>Bij SirusAI helpen we gemeenten zoals Berlare met het automatiseren van repetitieve taken, het opzetten van een veilig AI-beleid conform EU-regels en het verhogen van de productiviteit via Copilot-tools. Zo wint u tijd voor uw kerntaken en verbetert u de toegankelijkheid voor uw medewerkers en inwoners.</p><p>Wilt u vrijblijvend ontdekken hoe dit ook voor Berlare kan werken? Ik nodig u graag uit voor een kort kennismakingsgesprek of een praktische AI-QuickScan.</p>\"\n  }"
+              "content": "=Je bent een ervaren AI en Automatisatiemarketeer bij SirusAI. \nJe taak is een korte, mensgerichte en slimme cold email te schrijven naar een gemeente.\nDe mail richt zich op de burgemeester, schepen voor ICT/digitalisering of algemeen directeur, afhankelijk van de beschikbare contactgegevens.\n\n# Context\nSirusAI is een onafhankelijk AI- en automatisatieadviesbureau uit Merelbeke.\nWe helpen Vlaamse gemeenten om:\n- repetitieve administratie te automatiseren,\n- interne kennis en documentatie beter vindbaar te maken,\n- Copilot & ChatGPT veilig en efficiënt te gebruiken,\n- AI-beleid en governance op te zetten conform de EU AI Act.\n\nOnze aanpak is **pragmatisch, vendor-neutraal en meetbaar** — we leveren impact in weken, niet maanden.  \nTone of voice: professioneel, pragmatisch, Vlaams-zakelijk vriendelijk, transparant en inspirerend.\n\n# Invoerparameters\nGemeente_naam = {{ $('Loop Over Items').item.json.Gemeente }}\nGemeente_laatste_nieuws = {{ $('Loop Over Items').item.json.LaatsteNieuws }} \nGemeente_waarden = {{ $('Loop Over Items').item.json.Waarden }}\nGemeente_ambities= {{ $('Loop Over Items').item.json.Ambities }}\nOntvanger_rol = {{ $('Target_AllOrOne').item.json.titels_achternamen }}\nOntvanger_voornamen = {{ $('Target_AllOrOne').item.json.voornamen }}\nVerzender_naam = {{ $('SetFlowVars').first().json.FROM }}\nEmail_signature = {{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}\nBelangrijkste_pijnpunten = veel manuele administratie, AI-governance ontbreekt, Copilot nog niet benut, burgers vinden info niet terug op website.\nCall_to_action = Voorstel voor kennismakingsgesprek of Vrijblijvende AI-QuickScan \n\n# Waardevoorstel van SirusAI\nVan AI & Automatisatie plan tot impact in weken.\n## Ons Motto/Slogan\nHave a productive day\n## Hero Line\nSirusAI helpt KMO’s en overheden om processen te automatiseren, repetitief werk te elimineren, informatie vindbaar te maken en AI veilig te gebruiken.\nWe leveren tastbare tijdswinst binnen korte sprints; van strategie tot uitvoering.\n## Wat we doen\n- AI & Automatisatie-starter begeleiding: ontdek waar AI en automatisatie écht waarde creëren. Van opportuniteiten identificeren tot een concreet actieplan met prioriteiten, ROI-inschatting en veilige eerste stappen.\n- AI-assistenten: burgers, klanten en medewerkers krijgen 24/7 betrouwbare antwoorden, meertalig en uitlegbaar of laten repetitieve taken automatisch uitvoeren.\n- Workflow-automatisatie: versnel processen en elimineer manuele stappen. Facturen, formulieren, dossiers, HR-taken en rapportering verlopen automatisch via Power Automate, n8n of OCR/NLP.\n- Vergroot productiviteit en consistentie met generatieve AI: training, promptbibliotheek, AI-Champions en communities verhogen de kwaliteit en het rendement je werknemers. AI-Copilots schrijven, samenvatten en herformuleren beleidsnota’s, nieuwsbrieven en rapporten, in de juiste tone-of-voice, meertalig en automatisch publiceerbaar via CMS of nieuwsbriefplatform.\n- AI-kennisdeling & opleidingen: bouw een duurzaam kennisfundament. GenAI-kennisbank met Q&A’s, interne Copilot-ondersteuning en AI-literacy-training versterken teams en versnellen onboarding.\n- AI-governance by design: veranker vertrouwen vanaf dag één. AI-beleid, DPIA’s, AI-register en risicoanalyse — volledig conform EU AI Act en GDPR.\n## Waarom SirusAI?\n- Businesspartner, geen leverancier: we denken mee in functie van je doelstellingen, ROI en menselijk draagvlak.\n- Vendor-neutraal: we adviseren wat écht past voor u; build of buy, open source, Microsoft, of andere. We zijn niet gebonden aan één bepaalde technologie, oplossing of product.\n- End-to-end: van strategisch advies en richting tot implementatie, training of tijdelijke AI-experts in je team, als businesspartner ontzorgen we de ondernemers en administraties van initiatie tot impact\n- Sirus-ecosysteem: We maken deel uit van het bredere Sirus-ecosysteem, met ons zusterbedrijf Sirus waarin bijna 100 consultants actief zijn in softwareontwikkeling, integratie en cloud technologie. Dit alles geeft een stevige basis voor elke AI-implementatie.\n- “Tevreden of geld terug” Garantie\n-- Stop at anytime: de klant kan tijdens een project op ieder moment het contract stoppen. Later gaat dit tegen een fee zijn van 25% van het resterende bedrag, maar initieel gaan we gewoon laten stoppen \n-- Tevreden of geld terug garantie: We gaan dan ook klanten een garantie aanbieden dat per kleine project iteraties kunnen beslissen dat ze niet tevreden zijn over de laatste stap en indien ze niet tevreden zijn de geleverde prestaties hun investering terug kunnen krijgen.\n## Resultaat\n- Minder e-mails, wachttijden en frustratie — meer tevreden klanten en medewerkers.\n- Tot 50% minder administratiedruk en snellere besluitvorming.\n- Conform, uitlegbaar en klaar voor groei.\n- En vooral: duidelijkheid over wat AI écht voor jouw organisatie kan betekenen — zonder hype, met impact.\n\n\n# Top 4 meest relevante AI-use cases voor lokale overheden\n1. **AI-policy & governance** – ondersteuning bij het opstellen van een conform en veilig AI-beleid en AI-register volgens de EU AI Act en GDPR.  \n2. **Workflow-automatisatie** – digitaliseren van repetitieve administratie (vergunningsaanvragen, klachtenbeheer, notulen, HR-processen) waardoor manueel werk, dubbele invoer in sytems, opvolgingswerk vermeden worden en zo veel minder fouten en veel tijd gewonnen wordt\n3. **AI-gestuurde contentproductie** – Copilot en ChatGPT inzetten de productiviteit van medewerkers te verhogen om beleidsnota’s, nieuwsbrieven en rapporten automatisch te laten schrijven of samenvatten.  \n4. **Informatie Vinden / Loketassistent (intranet & website)**: Burgers/medewerkers vinden info niet; veel herhaalde telefoons/mails; inconsistent antwoord. Tijdverlies, frustratie en overbelasting van interne teams.\n- veel telefonische/mail vragen, waarvan het antwoord op de website staat.\n- veel verloren, manueel, repetitief  zelfde vragen beantwoorden.\n- dienstverlening beperkt tot werkuren\"\n\n# Andere use cases\n1. **Repetitieve Administratie** - Veel repetitief administratief werk (bv. facturen manueel inboeken, data overtypen, dubbele invoer in systemen,herinneringen sturen, ... ) → fouten + tijdverlies.\n2. **Interne Kennisbank & Training Copilot.** - Kennis zit verspreid in mappen en e-mails. Nieuwe medewerkers vinden moeilijk terug wat ze nodig hebben.\n3. **Slim Afspraakbeheer & Loketcapaciteit** - Afspraakbeheer is manueel; loketten kampen met wachtrijen, dubbele boekingen en inefficiënte inzet van medewerkers.\n4. **Dossierintake & Triage-Agent** Binnenkomende mails, formulieren en klachten worden handmatig gelezen, gecodeerd en toegewezen. \n- vaak ontbreekt informatie of is het niet duidelijk\n- automatisch opvolging van termijnen.\n- Vertragingen en fouten leiden tot frustratie.\n5. **Document-AI & Archivering** - Medewerkers moeten info uit pdf’s of scans overtypen in zaaksysteem; openbaarheid en archiefbeheer vragen manuele selectie.\nVergader- & Besluitcopilot\tNotulen en actiepunten worden niet of te laat verwerkt. Besluiten raken verspreid over meerdere documenten.\n6. **HR Self-Service & Medewerkersvragen** - HR ontvangt veel herhaalde vragen (verlof, fietsplan, verloning). Processen zijn manueel en niet geïntegreerd.\n7. **Beleidsanalyse & Rapportering** - Beleidsmedewerkers moeten lange documenten lezen, samenvatten en rapporteren. Beleidsdata is verspreid over Excel en BI-systemen.\n8. **Automatische Communicatie & Nieuwsbrieven** - Nieuwsbrieven, sociale media en updates worden handmatig gemaakt; inconsistentie en tijdsdruk bij communicatie.\n\n# Outputvereisten\nSchrijf een korte, overtuigende cold email (max. 220 woorden) die:\n0. De aanhef, de aanspreking is al voorzien, dus die moet niet in de mail worden aangehaald\n1. De hook\n-- Start met een relevante hook op basis van de Gemeente_laatste_nieuws, of gemeente_waarden of gemeente_ambities (enkel als die past bij de SirusAI-context).\n-- Gebruik de Gemeente_laatste_nieuws, gemeente_waarden of gemeente_ambities enkel als ze direct verband houdt met digitalisering, dienstverlening of administratie. Herformuleer die context tot een empathische openingszin met een menselijk inzicht (geen droge verwijzing naar nieuws).”\n2. De mail body\n-- Geen hook meer.\n-- Herhaal de hook uit 1. nooit.\n-- Sluit vlot aan bij de hook.\n-- Erkent een herkenbaar pijnpunt of uitdaging voor de gemeente.\n-- Leg goed en vlot uit hoe SirusAI concreet helpt (focus op de 3 belangrijkste use cases). Maar voeg 1 korte lijn toe over de meeste andere use cases. \n-- Geef uit \"Waarom SirusAI?\" heel krachtig en bonding waarom werken met SirusAI voor de gemeentes zin maakt. Wat ons apart zet van de competitie.\n-- Sluit af met 1 duidelijke en vriendelijke call-to-action voor een AI QuickScan te doen om te ontdekken waar de gemeente meest winst kan halen uit AI en Automatisatie.\n3. Taal: Nederlands (professioneel Vlaams), ‘u’-vorm.\n4. Toon: adviserend, niet-verkooppraat.\n5. Geef enkel de email body terug, geen extra information vooraf of achteraf. Enkel de inhoud van de email. Begin de mail niet met 'Subject:'', verwijder dat.\n6. Geef de email body terug in html, gebruik sobere, lichte, professionele mark-up (bold, bullets, italic, … ) om de email vlotter te laten lezen, maar beperkt het bolden.\n7. De bedankt en de Verzender_naam en Email_signature om af te sluiten worden achteraf toegevoegd, je moet die niet meer toevoegen. Daar staat reeds in wie de mail zendt, en alle contact informatie.\n8. Personaliseer de email subject (bv met naam van gemeente) voor maximale impact\n9. Verwerk subtiel één kernzin van het SirusAI-merk (‘Van plan tot impact in weken’ of ‘Have a productive day’) in de mail, maar nooit in de CTA of als slogan — enkel als toonversterker.\n\n# Extra richtlijnen\n- Gebruik enkel gemeentelijke info in de hook als ze relevant is voor SirusAI.\n- Vermijd AI-jargon (“LLM”, “neurale netwerken”). Focus op wat het oplost.\n- Toon begrip voor de publieke context (transparantie, compliance, burgergerichtheid).\n- Sluit af met een uitnodiging om kort kennis te maken of een AI QuickScan te doen.\n- Gebruik luchtige witruimte, korte zinnen, heldere structuur.\n- Gebruik enkel informatie die gegeven is in de prompt, maak zelf geen informatie op.\n- Gebruik nooit dit symbool — of –  als tussenvoegsel tussen 2 zinsdelen. Gebruik ; of start een nieuwe zin.\n\n# Schrijfstijl\nTone of voice: Professioneel, helder en mensgericht. Schrijf als een ervaren gids die vertrouwen wekt, niet als een verkoper. De toon is Vlaams zakelijk-vriendelijk: toegankelijk, concreet en to the point, zonder modewoorden of overdrijving.\n\nDoel: \nMaak AI en automatisatie begrijpelijk, rendabel en toepasbaar.\nVertrek altijd vanuit de uitdaging, pijnpunt of context van de lezer, niet vanuit SirusAI zelf. Toon hoe technologie problemen oplost, tijd bespaart of dienstverlening verbetert.\n\nKernprincipes:\n- Professioneel & deskundig: toon kennis zonder afstandelijk te zijn.\n- Pragmatisch: focus op resultaat, niet op hype of technische details.\n- Mensgericht: AI versterkt mensen — “human-in-the-loop by design”.\n- Transparant: eerlijk over haalbaarheid, kosten en risico’s.\n- Inspirerend: maak innovatie tastbaar, met eenvoudige voorbeelden.\n- Schrijfstijlregels:\n-- Schrijf in de tegenwoordige tijd, actief en direct.\n-- Gebruik korte, heldere zinnen (max. ±20 woorden).\n-- Gebruik “u” of “uw organisatie” in B2B-contexten.\n-- Vermijd loze marketingtaal (“disruptive”, “cutting-edge”).\n-- Leg complexe thema’s eenvoudig uit (“AI hoeft geen raketwetenschap te zijn”).\n-- Toon empathie en relevantie (“We begrijpen dat digitalisering niet stopt aan het loket.”).\n-- Gebruik krachtige werkwoorden: versnelt, vereenvoudigt, versterkt, ontzorgt, verbetert.\n-- Eindig altijd met een duidelijke call-to-action of vervolgstap (gesprek, QuickScan, demo).\n-- Gebruik beperkt en verstanding bullets om langere paragrafen op te breken en leesbaarder te maken\n- Sleutelzin voor consistentie:\n--“SirusAI maakt van AI een hefboom voor groei en efficiëntie — van plan tot impact.”\n-Slogan: \"Have a productive day!\"\n\n# Outputformaat\nHet antwoord is een json met 2 elementen, email subject en email body met het volgende formaat:\n{ \"Subject\": \"Efficiëntere administratie en digitale dienstverlening\",\n  \"Hook\": \"<p>Met de uitbreiding van het thuisloket biedt Berlare burgers meer digitale mogelijkheden. Toch blijft veel administratief werk tijdrovend en zoeken medewerkers vaak handmatig naar benodigde informatie.</p>\",\n  \"Body\": \"<p>Met de uitbreiding van het thuisloket biedt Berlare burgers meer digitale mogelijkheden. Toch blijft veel administratief werk tijdrovend en zoeken medewerkers vaak handmatig naar benodigde informatie.</p><p>Bij SirusAI helpen we gemeenten zoals Berlare met het automatiseren van repetitieve taken, het opzetten van een veilig AI-beleid conform EU-regels en het verhogen van de productiviteit via Copilot-tools. Zo wint u tijd voor uw kerntaken en verbetert u de toegankelijkheid voor uw medewerkers en inwoners.</p><p>Wilt u vrijblijvend ontdekken hoe dit ook voor Berlare kan werken? Ik nodig u graag uit voor een kort kennismakingsgesprek of een praktische AI-QuickScan.</p>\"\n  }"
             }
           ]
         },
@@ -268,8 +223,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        1312,
-        16
+        1232,
+        -432
       ],
       "id": "2f65ef97-9d29-4a97-bec4-04e533ad6d61",
       "name": "Compose Email",
@@ -279,6 +234,268 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $('MakeOutputJson').item.json.message.content.Subject }}",
+        "bodyContent": "=<br>{{ $('Target_AllOrOne').item.json.titels_achternamen }}<br>\n{{ $('Target_AllOrOne').item.json.voornamen }}<br><br>\n{{ $('WhichMail').item.json.message.content.Hook }}\n{{ $('WhichMail').item.json.message.content.Body }}<br>\n\nMet Vriendelijk Groet,<br>\nJan Syssauw<br><br>\n{{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}\n\n{{ $('SetFlowVars').first().json.UNSUBSCRIBE}}\n\n\n",
+        "additionalFields": {
+          "bccRecipients": "Jan.Syssauw@sirus-ai.be",
+          "from": "Jan.Syssauw@sirus-ai.be",
+          "bodyContentType": "html",
+          "toRecipients": "={{ $('Target_AllOrOne').item.json.email_lijst }}"
+        }
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2176,
+        -432
+      ],
+      "id": "988dc06a-d3fc-4a7d-9ec4-9595f15744f6",
+      "name": "Create a draft",
+      "webhookId": "6a76eb82-abbb-41b6-b359-0fc87a62478f",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "u0DmjWJiFHiqm5Tw",
+          "name": "Microsoft Outlook account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code node v2 — Run Once for Each Item\n\n// Huidig item + vars uit andere node$input.first().json.Burgemeester_Voornaam\nconst src  = $(\"Loop Over Items\").first().json\nconst vars = ($item(0).$node['SetFlowVars']?.json) || {};\n\n// Extract met fallbacks\nconst Burgemeester_Voornaam   = src.Burgemeester_Voornaam || \"\";\nconst Burgemeester_Achternaam = src.Burgemeester_Achternaam || \"\";\nconst Burgemeester_Email      = src.Burgemeester_Email || \"\";\n\nconst Schepen_Voornaam        = src.Schepen_Voornaam || \"\";\nconst Schepen_Achternaam      = src.Schepen_Achternaam || \"\";\nconst Schepen_Email           = src.Schepen_Email || \"\";\n\nconst AD_Voornaam             = src.Algemeen_Directeur_Voornaam || \"\";\nconst AD_Achternaam           = src.Algemeen_Directeur_Achternaam || \"\";\nconst AD_Email                = src.Algemeen_Directeur_Email || \"\";\n\n// Geldige e-mail?\nfunction geldig(email) {\n  if (!email) return false;\n  return !email.trim().toUpperCase().startsWith(\"NOT USE\");\n}\n\n// Output placeholders\nlet voornaam = \"\";\nlet titel_achternaam = \"\";\nlet email = \"\";\nlet target = \"\";\n\nconst mode = (vars.MAIL1st_audience).trim();\n\n// MODE: One → prioriteit AD -> Schepen -> Burgemeester\nif (mode === \"One\") {\n  if (geldig(AD_Email)) {\n    voornaam = `Beste ${AD_Voornaam},`;\n    titel_achternaam = `Beste Algemeen Directeur ${AD_Achternaam},`;\n    email = AD_Email.trim();\n    target = \"Algemeen Directeur\";\n  } else if (geldig(Schepen_Email)) {\n    voornaam = `Beste ${Schepen_Voornaam},`;\n    titel_achternaam = `Beste Schepen ${Schepen_Achternaam},`;\n    email = Schepen_Email.trim();\n    target = \"Schepen\";\n  } else if (geldig(Burgemeester_Email)) {\n    voornaam = `Beste ${Burgemeester_Voornaam},`;\n    titel_achternaam = `Beste Burgemeester ${Burgemeester_Achternaam},`;\n    email = Burgemeester_Email.trim();\n    target = \"Burgemeester\";\n  } else {\n    throw new Error(\"Geen geldig e-mailadres gevonden voor AD, Schepen of Burgemeester.\");\n  }\n\n  // Ook meteen de ‘list’-velden vullen met dezelfde ene waarde (handig downstream)\n  return {\n    json: {\n      voornamen: voornaam,\n      titels_achternamen: titel_achternaam,\n      email_lijst: email,\n      target_lijst: target,\n    }\n  };\n}\n\n// MODE: All → verzamel alles (Burgemeester, Schepen, AD)\nconst voornamen = [];\nconst titels_achternamen = [];\nconst emails = [];\nconst targets = [];\n\nif (geldig(Burgemeester_Email)) {\n  voornamen.push(`Beste ${Burgemeester_Voornaam}`);\n  titels_achternamen.push(`Beste Burgemeester ${Burgemeester_Achternaam}`);\n  emails.push(Burgemeester_Email.trim());\n  targets.push(\"Burgemeester\");\n}\nif (geldig(Schepen_Email)) {\n  voornamen.push(`Beste ${Schepen_Voornaam}`);\n  titels_achternamen.push(`Beste Schepen ${Schepen_Achternaam}`);\n  emails.push(Schepen_Email.trim());\n  targets.push(\"Schepen\");\n}\nif (geldig(AD_Email)) {\n  voornamen.push(`Beste ${AD_Voornaam}`);\n  titels_achternamen.push(`Beste Algemeen Directeur ${AD_Achternaam}`);\n  emails.push(AD_Email.trim());\n  targets.push(\"Algemeen Directeur\");\n}\n\nif (!emails.length) {\n  throw new Error(\"Geen enkel geldig e-mailadres gevonden (All).\");\n}\n\nreturn {\n  json: {\n   // gecombineerde strings\n    voornamen: voornamen.join(\", \"),\n    titels_achternamen: titels_achternamen.join(\", \"),\n    email_lijst: emails.join(\"; \"),\n    target_lijst: targets.join(\"; \"),\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        -432
+      ],
+      "id": "b42527ad-22a3-41df-a82b-b56861229c4c",
+      "name": "Target_AllOrOne"
+    },
+    {
+      "parameters": {
+        "content": "# 📧 n8n Cold Email Workflow (50% Documentatie)\n\n## 🎯 Doel\nAutomatisch cold emails genereren en uitsturen naar Vlaamse gemeenten op basis van data in een Excel-bestand.\n\n1. Lees gemeentelijke data uit Excel  \n2. Kies de juiste contactpersoon (Algemeen Directeur → Schepen → Burgemeester of “All”)  \n3. Laat GPT-4 een gepersonaliseerde mail schrijven (subject + HTML-body)  \n4. Verstuur de mail via SMTP of maak een Outlook-draft  \n5. Log resultaten terug in Excel  \n6. (Optioneel) stuur Slack-melding wanneer campagne klaar is  \n\n---\n\n## ⚙️ Vereisten\n- Microsoft 365-account (Excel + Outlook voor drafts)  \n- SMTP-account (voor direct mailen)  \n- OpenAI API-key (voor GPT-4 node)  \n- Excel met kolommen:  \n  **RowID**, **Status**, **Gemeente**, **LaatsteNieuws**, **Waarden**, **Ambities**,  \n  en contactgegevens (**Burgemeester\\_***, **Schepen\\_***, **Algemeen\\_Directeur\\_***)\n\n---\n\n## 🧩 Belangrijkste Variabelen (SetFlowVars-node)\n| Variabele | Beschrijving |\n|------------|---------------|\n| `MAIL1st_STATUS_NEW` | `\"Ready\"` – status van te mailen gemeenten |\n| `MAIL1st_STATUS_SENT` | `\"1stMailSent\"` – status na verzending |\n| `MAIL1st_audience` | `\"One\"` (één ontvanger) of `\"All\"` (alle geldige contactpersonen) |\n| `MAIL_CARRIER` | `\"Outlook\"` (maakt draft) of `\"SMTP\"` (verstuurt mail) |\n| `FROM`, `FROM_EMAIL`, `BCC_EMAIL` | Afzenderinformatie |\n| `MAIL_DATE_SENT` | Datum/tijdstip van verzending |\n| `EMAIL_SIGNATURE` | HTML-handtekening met bedrijfsinfo |\n\n---\n\n## 🧠 Flowoverzicht\n### 🔹 1. Manual Trigger  \nStart de workflow handmatig in n8n.\n\n### 🔹 2. SetFlowVars (Code)\nStelt alle vaste variabelen, datums en HTML-handtekening in.\n\n### 🔹 3. Get Rows (Excel)\nLeest alle rijen uit *CampagneGemeentes.xlsx → Worksheet “Campagne” → Table “Gemeentes”*.\n\n### 🔹 4. Filter\nBehoud enkel rijen met `Status == \"Ready\"`.\n\n### 🔹 5. Split In Batches\nDoorloopt alle gemeenten één voor één.\n\n### 🔹 6. Target_AllOrOne (Code)\n- `\"One\"`: kiest de hoogste prioriteit (AD → Schepen → Burgemeester)  \n- `\"All\"`: voegt alle geldige contacten samen  \nOutput:  \n`voornamen`, `titels_achternamen`, `email_lijst`, `target_lijst`\n\n### 🔹 7. Compose Email (OpenAI)\n- Gebruikt GPT-4 prompt met gemeentelijke context en SirusAI-template  \n- Genereert JSON met `{ Subject, Body }` in HTML\n\n### 🔹 8. MakeOutputJson (Code)\nZet string uit AI-node om naar `message.content.Subject` en `message.content.Body`.\n\n### 🔹 9. If (MAIL_CARRIER)\n- **Outlook:** maak HTML-draft  \n- **SMTP:** verstuur mail direct  \n\n### 🔹 10. Create Draft / Send Email\nGebruikt variabelen uit eerdere nodes:\n```html\n{{ $('MakeOutputJson').item.json.message.content.Subject }}<br><br>\n{{ $('Target_AllOrOne').item.json.titels_achternamen }}<br>\n{{ $('Target_AllOrOne').item.json.voornamen }}<br><br>\n{{ $json.message.content.Body }}\n<br>Met vriendelijke groeten,<br>\n{{ $('SetFlowVars').first().json.FROM }}<br><br>\n{{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}\n",
+        "height": 1936,
+        "width": 736
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -864,
+        -1248
+      ],
+      "id": "18998dd0-da63-4297-bb45-70d1571c2638",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1a42d91a-7561-460a-a5f5-a5ed6adfb0e0",
+              "leftValue": "={{ $(\"MakeOutputJson\").item.json.message.content.Body }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "c381336e-3105-4d75-bb58-0bc1662ccd4f",
+              "leftValue": "={{ $(\"MakeOutputJson\").item.json.message.content.Subject }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "c7e86292-a8af-481b-8001-6e7a9f0ef09a",
+              "leftValue": "={{ $(\"MakeOutputJson\").item.json.message.content.Body }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2b364cee-d8cc-4b88-83f9-8d1586f44310",
+              "leftValue": "={{ $(\"MakeOutputJson\").item.json.message.content.Subject }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        -432
+      ],
+      "id": "3f67de16-b04c-4d4f-ad13-1924dad44ce0",
+      "name": "CheckSubjectMailNotEmpty"
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "getRows",
+        "workbook": {
+          "__rl": true,
+          "value": "01U27M72NQXQ5BUCL335HY25OKUZP5PVS5",
+          "mode": "list",
+          "cachedResultName": "CampagneGemeentesDemo",
+          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B1A3ABCB0-7B09-4FDF-8D75-CAA65FD7D65D%7D&file=CampagneGemeentesDemo.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1"
+        },
+        "worksheet": {
+          "__rl": true,
+          "value": "{A1D312BB-B119-4471-9E95-C4E0720168EA}",
+          "mode": "list",
+          "cachedResultName": "Campagne",
+          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B1A3ABCB0-7B09-4FDF-8D75-CAA65FD7D65D%7D&file=CampagneGemeentesDemo.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&activeCell=Campagne!A1"
+        },
+        "table": {
+          "__rl": true,
+          "value": "{D412F676-0431-4A2B-8F14-9368157BD7D0}",
+          "mode": "list",
+          "cachedResultName": "Gemeentes",
+          "cachedResultUrl": "https://sirusbe-my.sharepoint.com/personal/jan_syssauw_sirus-ai_be/_layouts/15/Doc.aspx?sourcedoc=%7B1A3ABCB0-7B09-4FDF-8D75-CAA65FD7D65D%7D&file=CampagneGemeentesDemo.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&activeCell=Campagne!A1:AM10"
+        },
+        "returnAll": true,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.microsoftExcel",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        -432
+      ],
+      "id": "0ea02140-f7cf-4865-abea-9f870bc9971a",
+      "name": "Get rows",
+      "credentials": {
+        "microsoftExcelOAuth2Api": {
+          "id": "DW48dQCZ7VeSw4Xt",
+          "name": "Microsoft Excel account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Evaluator Agent – Relevantiecheck Gemeente-personalisatie (SirusAI)\n\n# Rol & Doel\nJe bent een strikte evaluator. Je beoordeelt of de voorgestelde hook in een cold email naar een gemeente inhoudelijk relevant is voor SirusAI. Relevantie betekent: \n- de hook sluit aantoonbaar aan bij één of meer SirusAI-domeinen hieronder én maakt een geloofwaardige brug naar concrete problemen/oplossingen in publieke dienstverlening.\n- de hook is professioneel\n\n## SirusAI-domeinen (waarop je matcht)\n- Workflow-automatisatie & procesversnelling (loket, vergunningen, HR, facturen, intake/triage, rappels)\n- Informatie-vindbaarheid & loketassistent (website/intranet, kennisbank, 24/7 antwoorden)\n- Copilot/ChatGPT productiviteit (nota’s, nieuwsbrieven, rapporten; tone-of-voice; training; adoptie)\n- AI-policy & governance (EU AI Act, GDPR, AI-register, risicoanalyse, DPIA)\n- Document-AI & archivering (OCR/NLP, data uit PDF/scans, openbaarheid/archiefbeheer)\n- Beleidsanalyse & rapportering (samenvattingen, data-synthese, dashboards)\n- Slim afspraakbeheer & capaciteit (wachtrijen, 24/7 digitaal loket, kanaalsturing)\n- Voorbeelden van ON-topic hooks\n-- nieuw/uitgebreid digitaal loket, e-loket, my[city];\n-- projecten rond digitalisering, dienstverlening, website/intranet;\n-- artikels over interne efficiëntie, verminderen administratie, snellere doorlooptijden;\n-- aankondigingen over AI-beleid, privacy/GDPR, veilig gebruik van Copilot/ChatGPT;\n-- plannen voor kennisdeling, archivering, openbaarheid, datagedreven beleid.\n-Typisch OFF-topic (afkeuren)\n-- stormschade, omgewaaide bomen, sportevenementen, cultuurfeesten, verkeersomleidingen, politie-acties, losse bouwprojecten zonder link met dienstverlening/digitalisering, loutere politieke statements, personeelswissels zonder digitale/informatie-insteek.\n\n# Invoerparameters\nGemeente_naam = {{ $('Loop Over Items').item.json.Gemeente }}\nGemeente_laatste_nieuws = {{ $('Loop Over Items').item.json.LaatsteNieuws }} \nGemeente_waarden = {{ $('Loop Over Items').item.json.Waarden }}\nGemeente_ambities= {{ $('Loop Over Items').item.json.Ambities }}\nHook_voorstel= {{ $('MakeOutputJson').item.json.message.content.Hook }}\nGebruik enkel deze bronnen; niet hallucineren of bijmaken.\n\n# Werkwijze (stap voor stap)\n- Extraheer signalen\n-- Haal (korte) bewijsfragmenten uit Gemeente_laatste_nieuws, Gemeente_waarden, Gemeente_ambities die raken aan SirusAI-domeinen.\n-- Koppel elk fragment aan 0-n SirusAI-domeinen.\n- Match de Hook\n-- Check of Hook_voorstel één of meer van die signalen correct reflecteert (geen vergezochte verbanden).\n-- Vlag vage of generieke claims (“digitalisering” zonder concrete link) als zwak.\n- Scoreer per criterium (0–5)\n-- C1 – Domeinmatch: sluit de hook aantoonbaar aan op ≥1 SirusAI-domein? (0=nee, 5=heel sterk)\n-- C2 – Probleemfit: benoemt de hook een relevant gemeentelijk pijnpunt (administratie, vindbaarheid, policy, …)?(0=nee, 5=heel sterk)\n-- C3 – Acteerbaarheid: is er een plausibele brug naar een SirusAI-oplossing (geen hype, concreet genoeg)?(0=nee, 5=heel sterk)\n-- C4 – Bronrelevantie: steunt de hook op gegeven nieuws/waarden/ambities, niet op gokwerk? (0=nee, 5=heel sterk)\n-- C5 – Publieke context: houdt de hook rekening met overheidsspecifieke eisen (transparantie, compliance, burgergericht)? (0=nee, 5=heel sterk)\n\nTotaal% = (C1+C2+C3+C4+C5) / 25 * 100\n\n- Beslissing\nPass als Totaal% ≥ 60\nAnders Fail (leg uit waarom, en geef een korte, veiligere herformulering die wél matcht met gevonden signalen; als er geen bruikbaar signaal is: adviseer “geen personalisatie – gebruik generieke hook over dienstverlening/digitalisering”).\n\n- Veilig alternatief\n-- Max 2 zinnen, concreet, zonder jargon, direct gelinkt aan minst-twijfelachtige signalen uit de input.\n\n# Uitvoer (strikte JSON)\n{\n  \"decision\": \"pass | fail\",\n  \"relevance_percent\": 0,\n  \"criteria_scores\": {\n    \"domain_match_C1\": 0,\n    \"problem_fit_C2\": 0,\n    \"actionability_C3\": 0,\n    \"source_alignment_C4\": 0,\n    \"public_context_C5\": 0\n  },\n  \"matched_domains\": [\"workflow-automatisatie\", \"informatie-vindbaarheid\", \"copilot-productiviteit\"],\n  \"evidence\": {\n    \"from_laatste_nieuws\": [\"...korte citeerbare fragmenten...\"],\n    \"from_waarden\": [\"...\"],\n    \"from_ambities\": [\"...\"]\n  },\n  \"hook_analysis\": {\n    \"strengths\": [\"...\"],\n    \"gaps\": [\"...\"],\n    \"off_topic_signals\": [\"... (indien van toepassing)\"]\n  },\n  \"verdict_rationale\": \"Korte, duidelijke uitleg waarom pass/fail.\",\n  \"safe_rewrite_suggestion\": \"Als fail: 1-2 zinnen die wel aansluiten. Als pass: leeg of null.\",\n  \"risk_flags\": [\"hallucinatie\", \"te algemeen\", \"geen bronfit\", \"compliance onbenoemd\"],\n  \"notes\": \"Eventuele korte tips (max 2).\"\n}\n\nVoorbeeld – ON-topic\n- Input (samengevat):\n-- Laatste nieuws: “Gemeente lanceert nieuw e-loket voor vergunningen.”\n-- Waarden: “toegankelijke dienstverlening, transparantie.”\n-- Ambities: “administratieve lasten verlagen.”\n- Hook_voorstel: “Met het nieuwe e-loket zetten jullie een sterke stap naar snellere dienstverlening…”\n- Uitvoer (kort):\n-- decision: pass, relevance_percent: 88–96, matched_domains: [workflow-automatisatie, informatie-vindbaarheid], korte rationale.\n\nVoorbeeld – OFF-topic\n- Input (samengevat):\n-- Laatste nieuws: “Storm richt schade aan in park.”\n-- Hook_voorstel: “Naar aanleiding van de storm… kunnen we AI inzetten…”\n-- Uitvoer: decision: fail, relevance_percent: 20–40, off_topic_signals: [stormschade], safe_rewrite_suggestion: “Zonder recente info over jullie e-loket/website: ‘Veel gemeenten willen wachttijden en opvolgwerk verlagen. Zullen we kort aftoetsen waar automatisatie of Copilot bij jullie het meeste oplevert?’”\n\n# Strikte regels\n- Geen externe kennis.\n- Geen aannames buiten de input.\n- Wees streng: “digitalisering” zonder duidelijk verband telt laag.\n- Verwijs expliciet naar welke bronzinnen je gebruikte in evidence.\n- Als er geen bruikbaar signaal is in nieuws/waarden/ambities: fail + generieke, dienstverleningsgerichte alternatief-hook.\n\nTaal: Nederlands, bondig, zakelijk-vriendelijk."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2144,
+        -912
+      ],
+      "id": "65f8d22b-44ab-48f6-bd86-3cb2ca0d9bd1",
+      "name": "EvaluateHook1",
+      "credentials": {
+        "openAiApi": {
+          "id": "iBPsHppGv3eLrZPv",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1a42d91a-7561-460a-a5f5-a5ed6adfb0e0",
+              "leftValue": "={{ $(\"EvaluateHook\").item.json.message.content}}",
+              "rightValue": "\"decision\": \"pass\"",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2512,
+        -896
+      ],
+      "id": "48d01fb3-0c26-447c-939d-f8de4c69159e",
+      "name": "HookRelevant1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c30865b9-76a7-43a0-aa18-b2bd15ad7b95",
+              "leftValue": "={{ $('SetFlowVars').first().json.MAIL_CARRIER }}",
+              "rightValue": "Outlook",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1968,
+        -432
+      ],
+      "id": "01fea127-19f0-459c-b57d-931382e6d31d",
+      "name": "WhichMail"
     }
   ],
   "connections": {
@@ -287,17 +504,6 @@
         [
           {
             "node": "SetFlowVars",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get rows": {
-      "main": [
-        [
-          {
-            "node": "Filter",
             "type": "main",
             "index": 0
           }
@@ -315,7 +521,7 @@
         ],
         [
           {
-            "node": "Target",
+            "node": "Target_AllOrOne",
             "type": "main",
             "index": 0
           }
@@ -366,22 +572,11 @@
         ]
       ]
     },
-    "Target": {
-      "main": [
-        [
-          {
-            "node": "Compose Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "MakeOutputJson": {
       "main": [
         [
           {
-            "node": "Send email",
+            "node": "CheckSubjectMailNotEmpty",
             "type": "main",
             "index": 0
           }
@@ -393,6 +588,75 @@
         [
           {
             "node": "MakeOutputJson",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a draft": {
+      "main": [
+        [
+          {
+            "node": "Update sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Target_AllOrOne": {
+      "main": [
+        [
+          {
+            "node": "Compose Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CheckSubjectMailNotEmpty": {
+      "main": [
+        [
+          {
+            "node": "WhichMail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Target_AllOrOne",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get rows": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhichMail": {
+      "main": [
+        [
+          {
+            "node": "Create a draft",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send email",
             "type": "main",
             "index": 0
           }

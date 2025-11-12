@@ -18,9 +18,8 @@ Gemeente_naam = {{ $('Loop Over Items').item.json.Gemeente }}
 Gemeente_laatste_nieuws = {{ $('Loop Over Items').item.json.LaatsteNieuws }} 
 Gemeente_waarden = {{ $('Loop Over Items').item.json.Waarden }}
 Gemeente_ambities= {{ $('Loop Over Items').item.json.Ambities }}
-Ontvanger_rol = {{ $('Target').item.json.titels_achternamen }}
-Ontvanger_voornamen = {{ $('Target').item.json.voornamen }}
-Ontvanger_achternamen = {{ $('Target').item.json.voornamen }}
+Ontvanger_rol = {{ $('Target_AllOrOne').item.json.titels_achternamen }}
+Ontvanger_voornamen = {{ $('Target_AllOrOne').item.json.voornamen }}
 Verzender_naam = {{ $('SetFlowVars').first().json.FROM }}
 Email_signature = {{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}
 Belangrijkste_pijnpunten = veel manuele administratie, AI-governance ontbreekt, Copilot nog niet benut, burgers vinden info niet terug op website.
@@ -40,7 +39,7 @@ We leveren tastbare tijdswinst binnen korte sprints; van strategie tot uitvoerin
 - Vergroot productiviteit en consistentie met generatieve AI: training, promptbibliotheek, AI-Champions en communities verhogen de kwaliteit en het rendement je werknemers. AI-Copilots schrijven, samenvatten en herformuleren beleidsnota’s, nieuwsbrieven en rapporten, in de juiste tone-of-voice, meertalig en automatisch publiceerbaar via CMS of nieuwsbriefplatform.
 - AI-kennisdeling & opleidingen: bouw een duurzaam kennisfundament. GenAI-kennisbank met Q&A’s, interne Copilot-ondersteuning en AI-literacy-training versterken teams en versnellen onboarding.
 - AI-governance by design: veranker vertrouwen vanaf dag één. AI-beleid, DPIA’s, AI-register en risicoanalyse — volledig conform EU AI Act en GDPR.
-## Waarom SirusAI
+## Waarom SirusAI?
 - Businesspartner, geen leverancier: we denken mee in functie van je doelstellingen, ROI en menselijk draagvlak.
 - Vendor-neutraal: we adviseren wat écht past voor u; build of buy, open source, Microsoft, of andere. We zijn niet gebonden aan één bepaalde technologie, oplossing of product.
 - End-to-end: van strategisch advies en richting tot implementatie, training of tijdelijke AI-experts in je team, als businesspartner ontzorgen we de ondernemers en administraties van initiatie tot impact
@@ -74,25 +73,31 @@ We leveren tastbare tijdswinst binnen korte sprints; van strategie tot uitvoerin
 - Vertragingen en fouten leiden tot frustratie.
 5. **Document-AI & Archivering** - Medewerkers moeten info uit pdf’s of scans overtypen in zaaksysteem; openbaarheid en archiefbeheer vragen manuele selectie.
 Vergader- & Besluitcopilot	Notulen en actiepunten worden niet of te laat verwerkt. Besluiten raken verspreid over meerdere documenten.
-5. **HR Self-Service & Medewerkersvragen** - HR ontvangt veel herhaalde vragen (verlof, fietsplan, verloning). Processen zijn manueel en niet geïntegreerd.
-6. **Beleidsanalyse & Rapportering** - Beleidsmedewerkers moeten lange documenten lezen, samenvatten en rapporteren. Beleidsdata is verspreid over Excel en BI-systemen.
-7. **Automatische Communicatie & Nieuwsbrieven** - Nieuwsbrieven, sociale media en updates worden handmatig gemaakt; inconsistentie en tijdsdruk bij communicatie.
+6. **HR Self-Service & Medewerkersvragen** - HR ontvangt veel herhaalde vragen (verlof, fietsplan, verloning). Processen zijn manueel en niet geïntegreerd.
+7. **Beleidsanalyse & Rapportering** - Beleidsmedewerkers moeten lange documenten lezen, samenvatten en rapporteren. Beleidsdata is verspreid over Excel en BI-systemen.
+8. **Automatische Communicatie & Nieuwsbrieven** - Nieuwsbrieven, sociale media en updates worden handmatig gemaakt; inconsistentie en tijdsdruk bij communicatie.
 
 # Outputvereisten
-Schrijf een korte, overtuigende cold email (max. 200 woorden) die:
+Schrijf een korte, overtuigende cold email (max. 220 woorden) die:
 0. De aanhef, de aanspreking is al voorzien, dus die moet niet in de mail worden aangehaald
-1. Start met een relevante hook op basis van de Gemeente_laatste_nieuws, of gemeente_waarden of gemeente_ambities (enkel als die past bij de SirusAI-context).
-Gebruik de Gemeente_laatste_nieuws, gemeente_waarden of gemeente_ambities enkel als ze direct verband houdt met digitalisering, dienstverlening of administratie. Herformuleer die context tot een empathische openingszin met een menselijk inzicht (geen droge verwijzing naar nieuws).”
-2. Erkent een herkenbaar pijnpunt of uitdaging voor de gemeente.
-3. Leg goed en vlot uit hoe SirusAI concreet helpt (focus op de 3 belangrijkste use cases). Maar voeg 1 korte lijn toe over de andere use case 
-4. Sluit af met een duidelijke en vriendelijke call-to-action.
-5. Taal: Nederlands (professioneel Vlaams), ‘u’-vorm.
-6. Toon: adviserend, niet-verkooppraat.
-7. Geef enkel de email body terug, geen extra information vooraf of achteraf. Enkel de inhoud van de email. Begin de mail niet met 'Subject:'', verwijder dat.
-8. Geef de email body terug in html, gebruik sobere, lichte, professionele mark-up (bold, bullets, italic, … ) om de email vlotter te laten lezen.
-9. De bedankt en de Verzender_naam en Email_signature om af te sluiten worden achteraf toegevoegd, je moet die niet meer toevoegen. Daar staat reeds in wie de mail zendt, en alle contact informatie.
-10. Personaliseer de email subject (bv met naam van gemeente) voor maximale impact
-11. Verwerk subtiel één kernzin van het SirusAI-merk (‘Van plan tot impact in weken’ of ‘Have a productive day’) in de mail, maar nooit in de CTA of als slogan — enkel als toonversterker.
+1. De hook
+-- Start met een relevante hook op basis van de Gemeente_laatste_nieuws, of gemeente_waarden of gemeente_ambities (enkel als die past bij de SirusAI-context).
+-- Gebruik de Gemeente_laatste_nieuws, gemeente_waarden of gemeente_ambities enkel als ze direct verband houdt met digitalisering, dienstverlening of administratie. Herformuleer die context tot een empathische openingszin met een menselijk inzicht (geen droge verwijzing naar nieuws).”
+2. De mail body
+-- Geen hook meer.
+-- Herhaal de hook uit 1. nooit.
+-- Sluit vlot aan bij de hook.
+-- Erkent een herkenbaar pijnpunt of uitdaging voor de gemeente.
+-- Leg goed en vlot uit hoe SirusAI concreet helpt (focus op de 3 belangrijkste use cases). Maar voeg 1 korte lijn toe over de meeste andere use cases. 
+-- Geef uit "Waarom SirusAI?" heel krachtig en bonding waarom werken met SirusAI voor de gemeentes zin maakt. Wat ons apart zet van de competitie.
+-- Sluit af met 1 duidelijke en vriendelijke call-to-action voor een AI QuickScan te doen om te ontdekken waar de gemeente meest winst kan halen uit AI en Automatisatie.
+3. Taal: Nederlands (professioneel Vlaams), ‘u’-vorm.
+4. Toon: adviserend, niet-verkooppraat.
+5. Geef enkel de email body terug, geen extra information vooraf of achteraf. Enkel de inhoud van de email. Begin de mail niet met 'Subject:'', verwijder dat.
+6. Geef de email body terug in html, gebruik sobere, lichte, professionele mark-up (bold, bullets, italic, … ) om de email vlotter te laten lezen, maar beperkt het bolden.
+7. De bedankt en de Verzender_naam en Email_signature om af te sluiten worden achteraf toegevoegd, je moet die niet meer toevoegen. Daar staat reeds in wie de mail zendt, en alle contact informatie.
+8. Personaliseer de email subject (bv met naam van gemeente) voor maximale impact
+9. Verwerk subtiel één kernzin van het SirusAI-merk (‘Van plan tot impact in weken’ of ‘Have a productive day’) in de mail, maar nooit in de CTA of als slogan — enkel als toonversterker.
 
 # Extra richtlijnen
 - Gebruik enkel gemeentelijke info in de hook als ze relevant is voor SirusAI.
@@ -101,6 +106,7 @@ Gebruik de Gemeente_laatste_nieuws, gemeente_waarden of gemeente_ambities enkel 
 - Sluit af met een uitnodiging om kort kennis te maken of een AI QuickScan te doen.
 - Gebruik luchtige witruimte, korte zinnen, heldere structuur.
 - Gebruik enkel informatie die gegeven is in de prompt, maak zelf geen informatie op.
+- Gebruik nooit dit symbool — of –  als tussenvoegsel tussen 2 zinsdelen. Gebruik ; of start een nieuwe zin.
 
 # Schrijfstijl
 Tone of voice: Professioneel, helder en mensgericht. Schrijf als een ervaren gids die vertrouwen wekt, niet als een verkoper. De toon is Vlaams zakelijk-vriendelijk: toegankelijk, concreet en to the point, zonder modewoorden of overdrijving.
@@ -132,5 +138,6 @@ Kernprincipes:
 # Outputformaat
 Het antwoord is een json met 2 elementen, email subject en email body met het volgende formaat:
 { "Subject": "Efficiëntere administratie en digitale dienstverlening",
+  "Hook": "<p>Met de uitbreiding van het thuisloket biedt Berlare burgers meer digitale mogelijkheden. Toch blijft veel administratief werk tijdrovend en zoeken medewerkers vaak handmatig naar benodigde informatie.</p>",
   "Body": "<p>Met de uitbreiding van het thuisloket biedt Berlare burgers meer digitale mogelijkheden. Toch blijft veel administratief werk tijdrovend en zoeken medewerkers vaak handmatig naar benodigde informatie.</p><p>Bij SirusAI helpen we gemeenten zoals Berlare met het automatiseren van repetitieve taken, het opzetten van een veilig AI-beleid conform EU-regels en het verhogen van de productiviteit via Copilot-tools. Zo wint u tijd voor uw kerntaken en verbetert u de toegankelijkheid voor uw medewerkers en inwoners.</p><p>Wilt u vrijblijvend ontdekken hoe dit ook voor Berlare kan werken? Ik nodig u graag uit voor een kort kennismakingsgesprek of een praktische AI-QuickScan.</p>"
   }
