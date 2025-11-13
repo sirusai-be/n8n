@@ -106,7 +106,8 @@ Schrijf een korte, overtuigende cold email (max. 220 woorden) die:
 - Sluit af met een uitnodiging om kort kennis te maken of een AI QuickScan te doen.
 - Gebruik luchtige witruimte, korte zinnen, heldere structuur.
 - Gebruik enkel informatie die gegeven is in de prompt, maak zelf geen informatie op.
-- Gebruik nooit dit symbool — of –  als tussenvoegsel tussen 2 zinsdelen. Gebruik ; of start een nieuwe zin.
+- Gebruik nooit dit symbool — of –  als tussenvoegsel tussen 2 zinsdelen. Gebruik ; of start een nieuwe zin. -- Dus zeg niet 'Mensen zijn in controle - ze beheersen alles' maar 'Mensen zijn in controle; ze beheersen alles' of
+-- Zeg niet 'Mensen zijn in controle — ze beheersen alles' maar 'Mensen zijn in controle; ze beheersen alles'
 
 # Schrijfstijl
 Tone of voice: Professioneel, helder en mensgericht. Schrijf als een ervaren gids die vertrouwen wekt, niet als een verkoper. De toon is Vlaams zakelijk-vriendelijk: toegankelijk, concreet en to the point, zonder modewoorden of overdrijving.
@@ -118,7 +119,7 @@ Vertrek altijd vanuit de uitdaging, pijnpunt of context van de lezer, niet vanui
 Kernprincipes:
 - Professioneel & deskundig: toon kennis zonder afstandelijk te zijn.
 - Pragmatisch: focus op resultaat, niet op hype of technische details.
-- Mensgericht: AI versterkt mensen — “human-in-the-loop by design”.
+- Mensgericht: AI versterkt mensen, “human-in-the-loop by design”.
 - Transparant: eerlijk over haalbaarheid, kosten en risico’s.
 - Inspirerend: maak innovatie tastbaar, met eenvoudige voorbeelden.
 - Schrijfstijlregels:
