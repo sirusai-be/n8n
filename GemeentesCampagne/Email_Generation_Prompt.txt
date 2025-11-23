@@ -98,7 +98,11 @@ Schrijf een korte, overtuigende cold email (max. 220 woorden) die:
 7. De bedankt en de Verzender_naam en Email_signature om af te sluiten worden achteraf toegevoegd, je moet die niet meer toevoegen. Daar staat reeds in wie de mail zendt, en alle contact informatie.
 8. Personaliseer de email subject (bv met naam van gemeente) voor maximale impact
 9. Verwerk subtiel één kernzin van het SirusAI-merk (‘Van plan tot impact in weken’ of ‘Have a productive day’) in de mail, maar nooit in de CTA of als slogan, enkel als toonversterker.
-10. Gebruik nooit de em-dash.
+10. Gebruik nooit de em-dash of het karakter '—'.
+11. Gebruik de term AI Quickscan of AI QuickScan NIET!
+12. Maak duidelijk dat deze mail van SirusAI komt en dat wij uw partner willen zijn in AI en Automatisatie als context.
+13. Als we spreken over 'we horen dat interne medewerkers' maak duidelijk dat dit niet specifiek hun medewerkers zijn maar medewerkers in het algemeen bij overheden.
+14. Vertel enkel feiten of zaken die in de prompt gegeven zijn, maar maak zelf geen data op zoals "SirusAI is partner van meer dan 20 Vlaamse besturen", wat nergens gedocumenteerd staat.
 
 # Extra richtlijnen
 - Gebruik enkel gemeentelijke info in de hook als ze relevant is voor SirusAI.
