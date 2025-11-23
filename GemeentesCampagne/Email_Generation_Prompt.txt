@@ -23,7 +23,7 @@ Ontvanger_voornamen = {{ $('Target_AllOrOne').item.json.voornamen }}
 Verzender_naam = {{ $('SetFlowVars').first().json.FROM }}
 Email_signature = {{ $('SetFlowVars').first().json.EMAIL_SIGNATURE }}
 Belangrijkste_pijnpunten = veel manuele administratie, AI-governance ontbreekt, Copilot nog niet benut, burgers vinden info niet terug op website.
-Call_to_action = Voorstel voor kennismakingsgesprek of Vrijblijvende AI-QuickScan 
+Call_to_action = “Mag ik u één van de komende dagen even opbellen hierover?”, integreer deze CTA zo exact mogelijk.
 
 # Waardevoorstel van SirusAI
 Van AI & Automatisatie plan tot impact in weken.
@@ -48,56 +48,57 @@ We leveren tastbare tijdswinst binnen korte sprints; van strategie tot uitvoerin
 -- Stop at anytime: de klant kan tijdens een project op ieder moment het contract stoppen. Later gaat dit tegen een fee zijn van 25% van het resterende bedrag, maar initieel gaan we gewoon laten stoppen 
 -- Tevreden of geld terug garantie: We gaan dan ook klanten een garantie aanbieden dat per kleine project iteraties kunnen beslissen dat ze niet tevreden zijn over de laatste stap en indien ze niet tevreden zijn de geleverde prestaties hun investering terug kunnen krijgen.
 ## Resultaat
-- Minder e-mails, wachttijden en frustratie — meer tevreden klanten en medewerkers.
+- Minder e-mails, wachttijden en frustratie meer tevreden klanten en medewerkers.
 - Tot 50% minder administratiedruk en snellere besluitvorming.
 - Conform, uitlegbaar en klaar voor groei.
-- En vooral: duidelijkheid over wat AI écht voor jouw organisatie kan betekenen — zonder hype, met impact.
+- En vooral: duidelijkheid over wat AI écht voor jouw organisatie kan betekenen zonder hype, met impact.
 
 
 # Top 4 meest relevante AI-use cases voor lokale overheden
-1. **AI-policy & governance** – ondersteuning bij het opstellen van een conform en veilig AI-beleid en AI-register volgens de EU AI Act en GDPR.  
-2. **Workflow-automatisatie** – digitaliseren van repetitieve administratie (vergunningsaanvragen, klachtenbeheer, notulen, HR-processen) waardoor manueel werk, dubbele invoer in sytems, opvolgingswerk vermeden worden en zo veel minder fouten en veel tijd gewonnen wordt
-3. **AI-gestuurde contentproductie** – Copilot en ChatGPT inzetten de productiviteit van medewerkers te verhogen om beleidsnota’s, nieuwsbrieven en rapporten automatisch te laten schrijven of samenvatten.  
+1. **AI-policy & governance**: Ondersteuning bij het opstellen van een conform en veilig AI-beleid en AI-register volgens de EU AI Act en GDPR.  
+2. **Workflow-automatisatie**: Digitaliseren van repetitieve administratie (vergunningsaanvragen, klachtenbeheer, notulen, HR-processen) waardoor manueel werk, dubbele invoer in sytems, opvolgingswerk vermeden worden en zo veel minder fouten en veel tijd gewonnen wordt
+3. **AI-gestuurde contentproductie**: Copilot en ChatGPT inzetten de productiviteit van medewerkers te verhogen om beleidsnota’s, nieuwsbrieven en rapporten automatisch te laten schrijven of samenvatten.  
 4. **Informatie Vinden / Loketassistent (intranet & website)**: Burgers/medewerkers vinden info niet; veel herhaalde telefoons/mails; inconsistent antwoord. Tijdverlies, frustratie en overbelasting van interne teams.
 - veel telefonische/mail vragen, waarvan het antwoord op de website staat.
 - veel verloren, manueel, repetitief  zelfde vragen beantwoorden.
 - dienstverlening beperkt tot werkuren"
 
 # Andere use cases
-1. **Repetitieve Administratie** - Veel repetitief administratief werk (bv. facturen manueel inboeken, data overtypen, dubbele invoer in systemen,herinneringen sturen, ... ) → fouten + tijdverlies.
-2. **Interne Kennisbank & Training Copilot.** - Kennis zit verspreid in mappen en e-mails. Nieuwe medewerkers vinden moeilijk terug wat ze nodig hebben.
-3. **Slim Afspraakbeheer & Loketcapaciteit** - Afspraakbeheer is manueel; loketten kampen met wachtrijen, dubbele boekingen en inefficiënte inzet van medewerkers.
+1. **Repetitieve Administratie**: Veel repetitief administratief werk (bv. facturen manueel inboeken, data overtypen, dubbele invoer in systemen,herinneringen sturen, ... ) → fouten + tijdverlies.
+2. **Interne Kennisbank & Training Copilot.**: Kennis zit verspreid in mappen en e-mails. Nieuwe medewerkers vinden moeilijk terug wat ze nodig hebben.
+3. **Slim Afspraakbeheer & Loketcapaciteit**: Afspraakbeheer is manueel; loketten kampen met wachtrijen, dubbele boekingen en inefficiënte inzet van medewerkers.
 4. **Dossierintake & Triage-Agent** Binnenkomende mails, formulieren en klachten worden handmatig gelezen, gecodeerd en toegewezen. 
 - vaak ontbreekt informatie of is het niet duidelijk
 - automatisch opvolging van termijnen.
 - Vertragingen en fouten leiden tot frustratie.
-5. **Document-AI & Archivering** - Medewerkers moeten info uit pdf’s of scans overtypen in zaaksysteem; openbaarheid en archiefbeheer vragen manuele selectie.
+5. **Document-AI & Archivering**: Medewerkers moeten info uit pdf’s of scans overtypen in zaaksysteem; openbaarheid en archiefbeheer vragen manuele selectie.
 Vergader- & Besluitcopilot	Notulen en actiepunten worden niet of te laat verwerkt. Besluiten raken verspreid over meerdere documenten.
-6. **HR Self-Service & Medewerkersvragen** - HR ontvangt veel herhaalde vragen (verlof, fietsplan, verloning). Processen zijn manueel en niet geïntegreerd.
-7. **Beleidsanalyse & Rapportering** - Beleidsmedewerkers moeten lange documenten lezen, samenvatten en rapporteren. Beleidsdata is verspreid over Excel en BI-systemen.
-8. **Automatische Communicatie & Nieuwsbrieven** - Nieuwsbrieven, sociale media en updates worden handmatig gemaakt; inconsistentie en tijdsdruk bij communicatie.
+6. **HR Self-Service & Medewerkersvragen**: HR ontvangt veel herhaalde vragen (verlof, fietsplan, verloning). Processen zijn manueel en niet geïntegreerd.
+7. **Beleidsanalyse & Rapportering**: Beleidsmedewerkers moeten lange documenten lezen, samenvatten en rapporteren. Beleidsdata is verspreid over Excel en BI-systemen.
+8. **Automatische Communicatie & Nieuwsbrieven**: Nieuwsbrieven, sociale media en updates worden handmatig gemaakt; inconsistentie en tijdsdruk bij communicatie.
 
 # Outputvereisten
 Schrijf een korte, overtuigende cold email (max. 220 woorden) die:
 0. De aanhef, de aanspreking is al voorzien, dus die moet niet in de mail worden aangehaald
 1. De hook
--- Start met een relevante hook op basis van de Gemeente_laatste_nieuws, of gemeente_waarden of gemeente_ambities (enkel als die past bij de SirusAI-context).
--- Gebruik de Gemeente_laatste_nieuws, gemeente_waarden of gemeente_ambities enkel als ze direct verband houdt met digitalisering, dienstverlening of administratie. Herformuleer die context tot een empathische openingszin met een menselijk inzicht (geen droge verwijzing naar nieuws).”
+  - Start met een relevante hook op basis van de Gemeente_laatste_nieuws, of gemeente_waarden of gemeente_ambities (enkel als die past bij de SirusAI-context).
+ - Gebruik de Gemeente_laatste_nieuws, gemeente_waarden of gemeente_ambities enkel als ze direct verband houdt met digitalisering, dienstverlening of administratie. Herformuleer die context tot een empathische openingszin met een menselijk inzicht (geen droge verwijzing naar nieuws).”
 2. De mail body
--- Geen hook meer.
--- Herhaal de hook uit 1. nooit.
--- Sluit vlot aan bij de hook.
--- Erkent een herkenbaar pijnpunt of uitdaging voor de gemeente.
--- Leg goed en vlot uit hoe SirusAI concreet helpt (focus op de 3 belangrijkste use cases). Maar voeg 1 korte lijn toe over de meeste andere use cases. 
--- Geef uit "Waarom SirusAI?" heel krachtig en bonding waarom werken met SirusAI voor de gemeentes zin maakt. Wat ons apart zet van de competitie.
--- Sluit af met 1 duidelijke en vriendelijke call-to-action voor een AI QuickScan te doen om te ontdekken waar de gemeente meest winst kan halen uit AI en Automatisatie.
+  - Geen hook meer.
+  - Herhaal de hook uit 1. nooit.
+  - Sluit vlot aan bij de hook.
+  - Erkent een herkenbaar pijnpunt of uitdaging voor de gemeente.
+  - Leg goed en vlot uit hoe SirusAI concreet helpt (focus op de 3 belangrijkste use cases). Maar voeg 1 korte lijn toe over de meeste andere use cases. 
+  - Geef uit "Waarom SirusAI?" heel krachtig en bonding waarom werken met SirusAI voor de gemeentes zin maakt. Wat ons apart zet van de competitie.
+  - Sluit af met 1 duidelijke en vriendelijke call-to-action voor een AI QuickScan te doen om te ontdekken waar de gemeente meest winst kan halen uit AI en Automatisatie.
 3. Taal: Nederlands (professioneel Vlaams), ‘u’-vorm.
 4. Toon: adviserend, niet-verkooppraat.
 5. Geef enkel de email body terug, geen extra information vooraf of achteraf. Enkel de inhoud van de email. Begin de mail niet met 'Subject:'', verwijder dat.
 6. Geef de email body terug in html, gebruik sobere, lichte, professionele mark-up (bold, bullets, italic, … ) om de email vlotter te laten lezen, maar beperkt het bolden.
 7. De bedankt en de Verzender_naam en Email_signature om af te sluiten worden achteraf toegevoegd, je moet die niet meer toevoegen. Daar staat reeds in wie de mail zendt, en alle contact informatie.
 8. Personaliseer de email subject (bv met naam van gemeente) voor maximale impact
-9. Verwerk subtiel één kernzin van het SirusAI-merk (‘Van plan tot impact in weken’ of ‘Have a productive day’) in de mail, maar nooit in de CTA of als slogan — enkel als toonversterker.
+9. Verwerk subtiel één kernzin van het SirusAI-merk (‘Van plan tot impact in weken’ of ‘Have a productive day’) in de mail, maar nooit in de CTA of als slogan, enkel als toonversterker.
+10. Gebruik nooit de em-dash.
 
 # Extra richtlijnen
 - Gebruik enkel gemeentelijke info in de hook als ze relevant is voor SirusAI.
@@ -106,8 +107,8 @@ Schrijf een korte, overtuigende cold email (max. 220 woorden) die:
 - Sluit af met een uitnodiging om kort kennis te maken of een AI QuickScan te doen.
 - Gebruik luchtige witruimte, korte zinnen, heldere structuur.
 - Gebruik enkel informatie die gegeven is in de prompt, maak zelf geen informatie op.
-- Gebruik nooit dit symbool — of –  als tussenvoegsel tussen 2 zinsdelen. Gebruik ; of start een nieuwe zin. -- Dus zeg niet 'Mensen zijn in controle - ze beheersen alles' maar 'Mensen zijn in controle; ze beheersen alles' of
--- Zeg niet 'Mensen zijn in controle — ze beheersen alles' maar 'Mensen zijn in controle; ze beheersen alles'
+- Gebruik in je output nooit '—', de em-dash en de Oxford komma als verbinding van gedachten of zinnen. Gebruik eerder ';' of start een nieuwe zin. -- Dus zeg niet 'Mensen zijn in controle - ze beheersen alles' maar 'Mensen zijn in controle; ze beheersen alles' of
+-- Zeg niet 'Mensen zijn in controle — ze beheersen alles' maar 'Mensen zijn in controle. Ze beheersen alles'
 
 # Schrijfstijl
 Tone of voice: Professioneel, helder en mensgericht. Schrijf als een ervaren gids die vertrouwen wekt, niet als een verkoper. De toon is Vlaams zakelijk-vriendelijk: toegankelijk, concreet en to the point, zonder modewoorden of overdrijving.
